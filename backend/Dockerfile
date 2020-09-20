@@ -4,7 +4,7 @@ LABEL Felix Mutua
 
 WORKDIR /backend
 
-COPY backend/backend
+COPY backend /backend
 
 RUN npm install
 

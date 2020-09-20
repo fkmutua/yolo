@@ -1,35 +1,26 @@
 version: "3.7"
 services:
-  client:
-    build: client/
-      context: . 
-      dockerfile: Dockerfile
-    ports:
-      - 3000:3000
-      networks:
-       - yolo_app
-
   backend:
-    build: build/
+    build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: backend/Dockerfile
     ports:
       - 5000:5000
-    depends_on:
+      depends_on:
       - mongo
-    networks:
-      -yolo_app
-
-mongo:
+  client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+    ports:
+      - 3000:3000
+  mongo:
     image: mongo
     ports:
       - 27017:27017
-    volumes:
-    - /yolo_vol
-    
-volumes: 
-  yolo_vol:
-
-networks:
- yolo_app:
-  driver: bridge
+  volumes: 
+        yolo_vol:
+      
+  networks:
+      yolo_app:
+      driver: bridge
