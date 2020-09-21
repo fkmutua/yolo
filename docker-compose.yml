@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: backend/Dockerfile
+    container_name: yolo_backend_1
     ports:
       - 5000:5000
       depends_on:
@@ -12,10 +13,12 @@ services:
     build:
       context: .
       dockerfile: client/Dockerfile
+  container_name: yolo_client_1
     ports:
       - 3000:3000
   mongo:
     image: mongo
+  container_name: yolo_mongo_1
     ports:
       - 27017:27017
   volumes: 
@@ -24,3 +27,4 @@ services:
   networks:
       yolo_app:
       driver: bridge
+      
